@@ -30,7 +30,7 @@
                   <td>{{$produto->nome}}</td>
                   <td>{{ 'R$' . '' . number_format($produto->valor, 2, ',', '.')}}</td>
                   <td>
-                      <a href="" class="btn btn-primary btn-sm">
+                      <a href="{{ route('atualizarProduto', $produto->id) }}" class="btn btn-primary btn-sm">
                           Editar
                       </a>
                       <meta name='csrf-token' content=" {{ csrf_token() }} "/>
