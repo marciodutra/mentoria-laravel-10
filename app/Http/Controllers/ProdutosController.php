@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\FormRequestProduto;
 use App\Models\Produto;
 use App\Models\Componentes;
+use Resources\Views\atualiza;
 
 class ProdutosController extends Controller
 {
@@ -51,12 +52,13 @@ class ProdutosController extends Controller
         
         if($request->method() == "PUT") {
             //alterar os dados
-            // $data = $request->all();
-            // $componentes = new Componentes();
-            // $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
-            // Produto::create($data);
+            $data = $request->all();
+            $componentes = new Componentes();
+            $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
+            $buscaRegistro = Produto::find($id);
+            $buscaRegistro->update($data);
 
-            // return redirect()->route('produto.index');
+            return redirect()->route('produto.index');
         
         }
 
