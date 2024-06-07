@@ -8,6 +8,7 @@ use App\Http\Requests\FormRequestProduto;
 use App\Models\Produto;
 use App\Models\Componentes;
 use Resources\Views\atualiza;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ProdutosController extends Controller
 {
@@ -41,6 +42,7 @@ class ProdutosController extends Controller
             $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
             Produto::create($data);
 
+            Toastr::success('Gravado com sucesso!');
             return redirect()->route('produto.index');
         }
 
