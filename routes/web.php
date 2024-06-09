@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutosController;
 use Resources\Views\atualizar;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\VendaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,11 @@ Route::prefix('clientes')->group(function() {
     Route::put('/atualizarCliente/{id}', [ClientesController::class, 'atualizarCliente'])->name('atualizarCliente');
     //Delete
     Route::delete('/delete', [ClientesController::class, 'delete'])->name('cliente.delete');
+});
+
+Route::prefix('vendas')->group(function() {
+    Route::get('/', [VendaController::class, 'index'])->name('vendas.index');
+    //Create
+    Route::get('/cadastrarVenda', [VendaController::class, 'cadastrarVenda'])->name('cadastrar.venda');
+    Route::post('/cadastrarVenda', [VendaController::class, 'cadastrarVenda'])->name('cadastrar.venda');
 });
