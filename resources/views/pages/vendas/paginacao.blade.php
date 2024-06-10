@@ -19,9 +19,10 @@
           <table class="table table-striped table-sm">
             <thead>
               <tr>
-                <th>Numeração da venda</th>
+                <th>Numeração</th>
                 <th>Produto</th>
-                <th>Cliente</th>                              
+                <th>Cliente</th>
+                <th>Ações</th>                                              
               </tr>
             </thead>
             <tbody>
@@ -29,7 +30,12 @@
               <tr>
                   <td>{{$venda->numero_da_venda}}</td>
                   <td>{{$venda->produto->nome}}</td>
-                  {{-- <td>{{$venda->cliente>nome}}</td>                                 --}}
+                  <td>{{$venda->cliente->nome}}</td>                  
+                  <td>
+                    <a href="{{ route('enviaComprovantePorEmail.venda', $venda->id) }}" class="btn btn-primary btn-sm">
+                        Enviar email
+                    </a>                    
+                </td>
               </tr>                
               @endforeach                        
             </tbody>

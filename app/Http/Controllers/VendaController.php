@@ -9,6 +9,9 @@ use App\Http\Requests\FormRequestVenda;
 use App\Models\Venda;
 use App\Models\Cliente;
 use App\Models\Produto;
+use App\Http\Controllers\cadastrarVendas;
+use Illuminate\Support\facades\Mail;
+use App\Mail\ComprovanteDeVendaEmail;
 
 class VendaController extends Controller
 {
@@ -23,21 +26,18 @@ class VendaController extends Controller
         
         return view('pages.vendas.paginacao', compact('findVendas'));
     }
+    
 
-    public function delete(Request $request) 
+    public function cadastrarVendas(FormRequestVenda $request) 
     {
-        $id = $request->id;
-        $buscaRegistro = Venda::find($id);
-        $buscaRegistro->delete();
-        return response()->json(['success'=>true]);
-    }
+        $findNumeracao = Venda::max('numero_da_venda')+1;
+        $findProduto = Produto::all();
+        $findCliente = Cliente::all();
 
-    public function cadastrarVenda(FormRequestVenda $request) 
-    {
-        
         if($request->method() == "POST") {
             //cria os dados
             $data = $request->all();
+            $data['numero_da_venda'] = $findNumeracao;
             
             Venda::create($data);
 
@@ -45,10 +45,26 @@ class VendaController extends Controller
             return redirect()->route('vendas.index');
         }
 
-        return view('pages.vendas.create');
+                
+        return view('pages.vendas.create', compact('findNumeracao', 'findProduto', 'findCliente'));
     }
 
-    public function atualizarVenda(FormRequestVenda $request, $id) 
+    public function enviaComprovantePorEmail($id) 
     {
-}
+        $buscaVenda = Venda::where('id', '=', $id)->first();
+        $produtoNome = $buscaVenda->produto->nome;
+        $clienteEmail = $buscaVenda->cliente->email;
+        $clienteNome = $buscaVenda->cliente->nome;
+        $sendMailData = [
+            'produtoNome' => $produtoNome,
+            'clienteNome' => $clienteNome,
+        ];
+
+        Mail::to($clienteEmail)->send(new ComprovanteDeVendaEmail($sendMailData));
+
+        Toastr::success('Enviado com sucesso!');
+            return redirect()->route('vendas.index');
+
+    }
+    
 }
