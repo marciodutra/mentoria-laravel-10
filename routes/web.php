@@ -5,6 +5,7 @@ use App\Http\Controllers\ProdutosController;
 use Resources\Views\atualizar;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\VendaController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,10 @@ use App\Http\Controllers\VendaController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+
+
+Route::prefix('dashboard')->group(function() {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');    
 });
 
 Route::prefix('produtos')->group(function() {
@@ -52,3 +55,5 @@ Route::prefix('vendas')->group(function() {
     Route::post('/cadastrarVenda', [VendaController::class, 'cadastrarVendas'])->name('cadastrar.venda');
     Route::get('/enviaComprovantePorEmail/{id}', [VendaController::class, 'enviaComprovantePorEmail'])->name('enviaComprovantePorEmail.venda');
 });
+
+
