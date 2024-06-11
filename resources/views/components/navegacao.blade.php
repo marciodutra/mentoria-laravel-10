@@ -29,16 +29,14 @@
               <svg class="bi"><use xlink:href="#people"/></svg>
               Clientes
             </a>
-          </li>          
-        </ul>
-        <ul class="nav flex-column mb-auto">          
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
-              <svg class="bi"><use xlink:href="#door-closed"/></svg>
-              Sair
-            </a>
           </li>
-        </ul>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href=" {{ route('usuario.index') }}">
+              <svg class="bi"><use xlink:href="#people"/></svg>
+              Usuário
+            </a>
+          </li>          
+        </ul>        
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@
             <div class="card-body">
               <h5 class="card-title">Produtos cadastrados</h5>
               <p class="card-text">Total de produtos cadastrados no sistema</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="#" class="btn btn-primary">{{ $totalDeProdutoCadastrado }}</a>
             </div>
           </div>
         </div>
@@ -20,7 +20,7 @@
             <div class="card-body">
               <h5 class="card-title">Clientes cadastrados</h5>
               <p class="card-text">Total de clientes cadastrados no sistema</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="#" class="btn btn-primary">{{$totalDeClienteCadastrado}}</a>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
             <div class="card-body">
               <h5 class="card-title">Vendas cadastradas</h5>
               <p class="card-text">Total de vendas cadastradas no sistema</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="#" class="btn btn-primary">{{$totalDeVendaCadastrado}}</a>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
             <div class="card-body">
               <h5 class="card-title">Usuários cadastrados</h5>
               <p class="card-text">Total de usuários cadastrados no sistema</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="#" class="btn btn-primary">0</a>
             </div>
           </div>
         </div>
