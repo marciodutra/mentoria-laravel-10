@@ -23,7 +23,7 @@
           </div>
           <div class="mb-3">
             <label  class="form-label">Senha</label>
-            <input value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" name="password">
+            <input type="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" name="password">
             @if ($errors->has('password'))
               <div class="invalid-feedback">{{ $errors->first('password') }}</div>
             @endif
